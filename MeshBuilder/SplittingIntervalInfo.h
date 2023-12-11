@@ -8,6 +8,7 @@ private:
 public:
 	SplitInfo splitInfo;
 
+	SplittingIntervalInfo();
 	SplittingIntervalInfo(size_t startIntervalPointInd, size_t endIntervalPointInd);
 	SplittingIntervalInfo(size_t startIntervalPointInd, size_t endIntervalPointInd, const SplitInfo& splitInfo);
 

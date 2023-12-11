@@ -4,6 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Computer_Modern_Technologies_2", "Computer_Modern_Technologies_2\Computer_Modern_Technologies_2.vcxproj", "{E54E56EC-1E84-4004-9536-694178991B30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18879591-45AF-4520-8610-AABF477EE131} = {18879591-45AF-4520-8610-AABF477EE131}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshBuilder", "MeshBuilder\MeshBuilder.vcxproj", "{18879591-45AF-4520-8610-AABF477EE131}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MagnetMeshBuilder", "MagnetMeshBuilder\MagnetMeshBuilder.vcxproj", "{4AF53D47-BF21-475B-AA05-54FE719CFED4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GausseIntegr", "GausseIntegr\GausseIntegr.vcxproj", "{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MagnetDirectTask", "MagnetDirectTask\MagnetDirectTask.vcxproj", "{D0F8988B-C968-4539-9DCB-249971B80BA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +32,38 @@ Global
 		{E54E56EC-1E84-4004-9536-694178991B30}.Release|x64.Build.0 = Release|x64
 		{E54E56EC-1E84-4004-9536-694178991B30}.Release|x86.ActiveCfg = Release|Win32
 		{E54E56EC-1E84-4004-9536-694178991B30}.Release|x86.Build.0 = Release|Win32
+		{18879591-45AF-4520-8610-AABF477EE131}.Debug|x64.ActiveCfg = Debug|x64
+		{18879591-45AF-4520-8610-AABF477EE131}.Debug|x64.Build.0 = Debug|x64
+		{18879591-45AF-4520-8610-AABF477EE131}.Debug|x86.ActiveCfg = Debug|Win32
+		{18879591-45AF-4520-8610-AABF477EE131}.Debug|x86.Build.0 = Debug|Win32
+		{18879591-45AF-4520-8610-AABF477EE131}.Release|x64.ActiveCfg = Release|x64
+		{18879591-45AF-4520-8610-AABF477EE131}.Release|x64.Build.0 = Release|x64
+		{18879591-45AF-4520-8610-AABF477EE131}.Release|x86.ActiveCfg = Release|Win32
+		{18879591-45AF-4520-8610-AABF477EE131}.Release|x86.Build.0 = Release|Win32
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Debug|x64.ActiveCfg = Debug|x64
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Debug|x64.Build.0 = Debug|x64
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Debug|x86.ActiveCfg = Debug|Win32
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Debug|x86.Build.0 = Debug|Win32
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Release|x64.ActiveCfg = Release|x64
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Release|x64.Build.0 = Release|x64
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Release|x86.ActiveCfg = Release|Win32
+		{4AF53D47-BF21-475B-AA05-54FE719CFED4}.Release|x86.Build.0 = Release|Win32
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Debug|x64.ActiveCfg = Debug|x64
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Debug|x64.Build.0 = Debug|x64
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Debug|x86.ActiveCfg = Debug|Win32
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Debug|x86.Build.0 = Debug|Win32
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Release|x64.ActiveCfg = Release|x64
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Release|x64.Build.0 = Release|x64
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Release|x86.ActiveCfg = Release|Win32
+		{6A3E55A0-EA6A-47BA-A218-EB691AABAA27}.Release|x86.Build.0 = Release|Win32
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Debug|x64.ActiveCfg = Debug|x64
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Debug|x64.Build.0 = Debug|x64
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Debug|x86.ActiveCfg = Debug|Win32
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Debug|x86.Build.0 = Debug|Win32
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Release|x64.ActiveCfg = Release|x64
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Release|x64.Build.0 = Release|x64
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Release|x86.ActiveCfg = Release|Win32
+		{D0F8988B-C968-4539-9DCB-249971B80BA7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

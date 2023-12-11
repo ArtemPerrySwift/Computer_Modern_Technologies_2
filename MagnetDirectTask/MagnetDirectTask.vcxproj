@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e54e56ec-1e84-4004-9536-694178991b30}</ProjectGuid>
-    <RootNamespace>ComputerModernTechnologies2</RootNamespace>
+    <ProjectGuid>{d0f8988b-c968-4539-9dcb-249971b80ba7}</ProjectGuid>
+    <RootNamespace>MagnetDirectTask</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -105,13 +105,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\GausseIntegr;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetDirectTask;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\GausseIntegr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\x64\Debug;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libconfig-x64-v120-mt-1_4_9_4.imp.lib;MeshBuilder.lib;MagnetDirectTask.lib;GausseIntegr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GausseIntegr.lib;MagnetMeshBuilder.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,25 +131,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MagnetDirectTask.h" />
+    <ClInclude Include="MagnetIndocFunct.h" />
+    <ClInclude Include="Reciver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MagnetIndocFunct.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DirectTask.cfg" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MeshBuilder\MeshBuilder.vcxproj">
-      <Project>{18879591-45af-4520-8610-aabf477ee131}</Project>
+    <ProjectReference Include="..\GausseIntegr\GausseIntegr.vcxproj">
+      <Project>{6a3e55a0-ea6a-47ba-a218-eb691aabaa27}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MagnetMeshBuilder\MagnetMeshBuilder.vcxproj">
+      <Project>{4af53d47-bf21-475b-aa05-54fe719cfed4}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\libconfig_vc120.1.4.9.4\build\native\libconfig_vc120.targets" Condition="Exists('..\packages\libconfig_vc120.1.4.9.4\build\native\libconfig_vc120.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\libconfig_vc120.1.4.9.4\build\native\libconfig_vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libconfig_vc120.1.4.9.4\build\native\libconfig_vc120.targets'))" />
-  </Target>
 </Project>

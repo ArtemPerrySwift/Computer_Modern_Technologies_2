@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e54e56ec-1e84-4004-9536-694178991b30}</ProjectGuid>
-    <RootNamespace>ComputerModernTechnologies2</RootNamespace>
+    <ProjectGuid>{18879591-45af-4520-8610-aabf477ee131}</ProjectGuid>
+    <RootNamespace>MeshBuilder</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -104,14 +104,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\GausseIntegr;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetDirectTask;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\x64\Debug;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libconfig-x64-v120-mt-1_4_9_4.imp.lib;MeshBuilder.lib;MagnetDirectTask.lib;GausseIntegr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libconfig-x64-v120-mt-1_4_9_4.imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,16 +131,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Interval.cpp" />
+    <ClCompile Include="LibconfigDeluxe.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SplitInfo.cpp" />
+    <ClCompile Include="SplittedInterval.cpp" />
+    <ClCompile Include="SplittingIntervalInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Area.h" />
+    <ClInclude Include="AreaInfo.h" />
+    <ClInclude Include="GeometryElement.h" />
+    <ClInclude Include="Interval.h" />
+    <ClInclude Include="LibconfigDeluxe.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshInfo.h" />
+    <ClInclude Include="MeshInfoLibconfig.h" />
+    <ClInclude Include="SplitInfo.h" />
+    <ClInclude Include="SplittedInterval.h" />
+    <ClInclude Include="SplittingIntervalInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DirectTask.cfg" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MeshBuilder\MeshBuilder.vcxproj">
-      <Project>{18879591-45af-4520-8610-aabf477ee131}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

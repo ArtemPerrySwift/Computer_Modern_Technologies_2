@@ -18,6 +18,7 @@ private:
 			iterateOverDimension<DIMENSION_NUMBER - 1>(splitIntervals, geometryElements, ind);
 	}
 
+	template<>
 	void iterateOverDimension<0>(std::array<const std::vector<Interval>*, DIMENSION_COUNT>& splitIntervals, std::vector<GeometryElement<DIMENSION_COUNT>>& geometryElements, std::array<size_t, DIMENSION_COUNT>& ind) const
 	{
 		std::array<const Interval*, DIMENSION_COUNT> elemIntervals;
@@ -30,20 +31,20 @@ private:
 	}
 
 public:
-	Area(const std::array<const std::vector<SplittedInterval>*, DIMENSION_COUNT> intervalsDim, const AreaInfo<DIMENSION_COUNT>& areaInfo) {
+	Area(const std::array<std::vector<SplittedInterval>, DIMENSION_COUNT> intervalsDim, const AreaInfo<DIMENSION_COUNT>& areaInfo) {
 		for (int i = 0; i < DIMENSION_COUNT; i++) {
-			if (areaInfo.intervalIndexesPerDim.size() >= intervalsDim[i]->size()) {
+			if (areaInfo.intervalIndexesPerDim.size() >= intervalsDim[i].size()) {
 				std::string err{ "Count of intevals for dimension " };
 				err += std::to_string(i) + " cannot be less than 0";
 				throw std::exception(err.c_str());
 			}
 			//const SplittedInterval& buf = &((*(intervalsDim[i]))[areaInfo.intervalNumberDim[i]]);
-			_intervals[i] = &((*(intervalsDim[i]))[areaInfo.intervalIndexesPerDim[i]]);
+			_intervals[i] = &(intervalsDim[i][areaInfo.intervalIndexesPerDim[i]]);
 		}
 		std::array<const SplittedInterval&, DIMENSION_COUNT> intervals;
 	}
 
-	const std::array<const SplittedInterval*, DIMENSION_COUNT>& getIntervals()
+	const std::array<const SplittedInterval*, DIMENSION_COUNT>& getIntervals() const
 	{
 		return _intervals;
 	}

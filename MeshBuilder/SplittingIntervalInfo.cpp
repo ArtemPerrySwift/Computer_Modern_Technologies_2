@@ -1,5 +1,11 @@
 #include "SplittingIntervalInfo.h"
 #include <exception>
+
+SplittingIntervalInfo::SplittingIntervalInfo()
+{
+	_startIntervalPointInd = 0ULL;
+	_endIntervalPointInd = 1ULL;
+}
 SplittingIntervalInfo::SplittingIntervalInfo(size_t startIntervalPointInd, size_t endIntervalPointInd)
 {
 	setIntervalPointsInd(startIntervalPointInd, endIntervalPointInd);
@@ -33,7 +39,7 @@ size_t SplittingIntervalInfo::setEndIntervalPointInd(size_t endIntervalPointInd)
 
 size_t SplittingIntervalInfo::setIntervalPointsInd(size_t startIntervalPointInd, size_t endIntervalPointInd)
 {
-	if(endIntervalPointInd == endIntervalPointInd)
+	if(startIntervalPointInd == endIntervalPointInd)
 		throw std::exception("Attemp to assign index of start point and end point same value");
 
 	_startIntervalPointInd = startIntervalPointInd;

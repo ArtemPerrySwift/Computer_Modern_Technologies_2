@@ -28,7 +28,8 @@ void SplittedInterval::splitInterval(double startIntervalPointInd, double endInt
 {
 	int n = intervalForSplit.splitInfo.intervalsCount;
 	double q = intervalForSplit.splitInfo.sparseRatio;
-
+	if (q < 0)
+		q = -1 / q;
 	if (startIntervalPointInd > endIntervalPointInd)
 	{
 		std::swap(startIntervalPointInd, endIntervalPointInd);
