@@ -24,7 +24,7 @@ public:
 		return _areas;
 	}
 
-	void getElements(std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>> magnetElements) const
+	void getElements(std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>>& magnetElements) const
 	{
 		int elementsCount = 0;
 		for (const MagnetArea<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>& area : _areas)

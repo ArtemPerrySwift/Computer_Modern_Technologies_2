@@ -31,6 +31,7 @@ private:
 	}
 
 public:
+	//Area();
 	Area(const std::array<std::vector<SplittedInterval>, DIMENSION_COUNT>& intervalsDim, const AreaInfo<DIMENSION_COUNT>& areaInfo) {
 		for (int iDimension = 0; iDimension < DIMENSION_COUNT; iDimension++) {
 			if (areaInfo.intervalIndexesPerDim[iDimension] >= intervalsDim[iDimension].size()) {
