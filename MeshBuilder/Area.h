@@ -31,17 +31,17 @@ private:
 	}
 
 public:
-	Area(const std::array<std::vector<SplittedInterval>, DIMENSION_COUNT> intervalsDim, const AreaInfo<DIMENSION_COUNT>& areaInfo) {
-		for (int i = 0; i < DIMENSION_COUNT; i++) {
-			if (areaInfo.intervalIndexesPerDim.size() >= intervalsDim[i].size()) {
+	Area(const std::array<std::vector<SplittedInterval>, DIMENSION_COUNT>& intervalsDim, const AreaInfo<DIMENSION_COUNT>& areaInfo) {
+		for (int iDimension = 0; iDimension < DIMENSION_COUNT; iDimension++) {
+			if (areaInfo.intervalIndexesPerDim[iDimension] >= intervalsDim[iDimension].size()) {
 				std::string err{ "Count of intevals for dimension " };
-				err += std::to_string(i) + " cannot be less than 0";
+				err += std::to_string(iDimension) + " cannot be less than 0";
 				throw std::exception(err.c_str());
 			}
 			//const SplittedInterval& buf = &((*(intervalsDim[i]))[areaInfo.intervalNumberDim[i]]);
-			_intervals[i] = &(intervalsDim[i][areaInfo.intervalIndexesPerDim[i]]);
+			_intervals[iDimension] = &(intervalsDim[iDimension][areaInfo.intervalIndexesPerDim[iDimension]]);
 		}
-		std::array<const SplittedInterval&, DIMENSION_COUNT> intervals;
+		//std::array<const SplittedInterval&, DIMENSION_COUNT> intervals;
 	}
 
 	const std::array<const SplittedInterval*, DIMENSION_COUNT>& getIntervals() const

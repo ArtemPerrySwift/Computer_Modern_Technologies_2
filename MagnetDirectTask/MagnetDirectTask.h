@@ -12,6 +12,17 @@ private:
 	const std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>>& _magnetElements;	
 	GausseIntegr<GEOM_DIMENSION_COUNT> _gausseIntegr;
 
+	template<unsigned char MAGN_DIMENSION> requires (MAGN_DIMENSION <= MAGN_DIMENSION_COUNT)
+	void getIndoctValue(std::array<double, GEOM_DIMENSION_COUNT>& point, double I, std::array<double, MAGN_DIMENSION_COUNT>& magnIndoc) {
+		magnIndoc[MAGN_DIMENSION - 1] = getIndoctValue<MAGN_DIMENSION>(point, I);
+		getIndoctValue<MAGN_DIMENSION - 1>(point, I, magnIndoc);
+	}
+
+	template<>
+	void getIndoctValue<1>(std::array<double, GEOM_DIMENSION_COUNT>& point, double I, std::array<double, MAGN_DIMENSION_COUNT>& magnIndoc) {
+		magnIndoc[0] = getIndoctValue<1>(point, I);
+	}
+
 public:
 	MagnetDirectTask<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>(const std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>>& magnetElements) : _magnetElements{ magnetElements } {
 	}
@@ -49,5 +60,9 @@ public:
 		}
 		b *= I / (4 * PI);
 		return b;
+	}
+
+	void getIndoctValue(std::array<double, GEOM_DIMENSION_COUNT>& point, double I, std::array<double, MAGN_DIMENSION_COUNT>& magnIndoc) {
+		getIndoctValue<MAGN_DIMENSION_COUNT>(point, I, magnIndoc);
 	}
 };

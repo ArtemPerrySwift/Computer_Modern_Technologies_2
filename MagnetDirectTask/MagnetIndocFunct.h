@@ -4,9 +4,30 @@
 template <unsigned char GEOM_DIMENSION_COUNT, unsigned char MAGN_DIMENSION_COUNT>
 class MagnetIndocFunct
 {
+private:
 	const MagnetInfo<MAGN_DIMENSION_COUNT>* _magnetInfo;
+	unsigned char _magnitDimension;
 protected:
-	virtual double calcCoefs(std::array<double, GEOM_DIMENSION_COUNT>& elemPoint, std::array<double, MAGN_DIMENSION_COUNT>& magnCoeff) const = 0;
+	virtual double calcCoefs(std::array<double, GEOM_DIMENSION_COUNT>& elemPoint, std::array<double, MAGN_DIMENSION_COUNT>& magnCoeff) const {
+		int i;
+		std::array<double, GEOM_DIMENSION_COUNT> localPoint;
+		double r2 = 0;
+		for (i = 0; i < GEOM_DIMENSION_COUNT; i++) {
+			localPoint[i] = elemPoint[i] - MagnetIndocFunct<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>::targetPoint[i];
+			r2 += localPoint[i] * localPoint[i];
+		}
+
+		for (i = 0; i < _magnitDimension; i++) {
+			magnCoeff[i] = 3 * localPoint[i] * localPoint[_magnitDimension] / r2;
+		}
+
+		magnCoeff[i] = 3 * (localPoint[i] * localPoint[i] / r2 - 1);
+
+		for (i++; i < MAGN_DIMENSION_COUNT; i++) {
+			magnCoeff[i] = 3 * localPoint[i] * localPoint[_magnitDimension] / r2;
+		}
+		return r2;
+	}
 public:
 	std::array<double, GEOM_DIMENSION_COUNT> targetPoint;
 
@@ -35,6 +56,14 @@ public:
 	MagnetIndocFunct(const MagnetInfo<MAGN_DIMENSION_COUNT>& magnetInfo) {
 		_magnetInfo = &magnetInfo;
 	}
+
+	bool changeIndocMagnetDimension(unsigned char magnitDimension) {
+		if (magnitDimension > MAGN_DIMENSION_COUNT)
+			return false;
+		_magnitDimension = magnitDimension - 1;
+	}
+
+
 };
 
 template <unsigned char GEOM_DIMENSION_COUNT, unsigned char MAGN_DIMENSION_COUNT, unsigned char MAGN_DIMENSION> requires (MAGN_DIMENSION <= MAGN_DIMENSION_COUNT)

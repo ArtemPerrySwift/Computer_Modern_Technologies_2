@@ -20,6 +20,10 @@ public:
 			_areas.emplace_back(BasicMesh<GEOM_DIMENSION_COUNT>::getIntervals(), areaInfo);
 	}
 
+	const std::vector<MagnetArea<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>>& getAreas() {
+		return _areas;
+	}
+
 	void getElements(std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>> magnetElements) const
 	{
 		int elementsCount = 0;

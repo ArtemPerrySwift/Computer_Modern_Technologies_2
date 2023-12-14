@@ -37,7 +37,7 @@ public:
 			areas.emplace_back(BasicMesh<DIMENSION_COUNT>::getIntervals(), areaInfo);
 	}
 
-	void getElements(std::vector<GeometryElement<DIMENSION_COUNT>> geometryElements) const
+	void getElements(std::vector<GeometryElement<DIMENSION_COUNT>>& geometryElements) const
 	{
 		int elementsCount = 0;
 		for (const Area<DIMENSION_COUNT>& area : areas)
