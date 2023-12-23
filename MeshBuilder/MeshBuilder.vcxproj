@@ -147,6 +147,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshInfo.h" />
     <ClInclude Include="MeshInfoLibconfig.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="SplitInfo.h" />
     <ClInclude Include="SplittedInterval.h" />
     <ClInclude Include="SplittingIntervalInfo.h" />
