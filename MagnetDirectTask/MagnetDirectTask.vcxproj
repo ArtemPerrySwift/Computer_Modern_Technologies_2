@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -105,13 +105,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\GausseIntegr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMesh;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\include;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\MagnetMeshBuilder;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\GausseIntegr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GausseIntegr.lib;MagnetMeshBuilder.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\packages\libconfig_vc120.1.4.9.4\build\native\bin;C:\Users\kislin.2018\source\repos\Computer_Modern_Technologies_2\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GausseIntegr.lib;MagnetMeshBuilder.lib;MeshBuilder.lib;libconfig-x64-v120-mt-1_4_9_4.imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,6 +146,9 @@
     <ProjectReference Include="..\MagnetMeshBuilder\MagnetMeshBuilder.vcxproj">
       <Project>{4af53d47-bf21-475b-aa05-54fe719cfed4}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DirectTask.cfg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

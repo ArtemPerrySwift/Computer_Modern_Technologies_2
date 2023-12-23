@@ -13,7 +13,7 @@ const unsigned char MAGN_DIMENSION1 = 1;
 int main()
 {
 	std::vector<MagnetElement<2, 2>> elems;
-	MagnetDirectTask<2,2> directTask(elems);
+	MagnetTaskSimple<2,2> directTask(elems);
 	Reciver<2, 2> rec;
 	directTask.getIndoctValue<1>(rec.point, 5);
 	return 0;
@@ -61,7 +61,7 @@ private:
 		out.close();
 		out.open(fileName + "_B_" + std::to_string(it) + ".bin", std::ios::binary | std::ios::out);
 
-		MagnetDirectTask<MagnetDim> magnetDirectTask(elems);
+		MagnetTaskSimple<MagnetDim> magnetDirectTask(elems);
 		std::array<double, MAGN_DIMENSION_COUNT> B;
 		for (std::array<double, GEOM_DIMENSION_COUNT>& point : *_reciversPoints) {
 			magnetDirectTask.getIndoctValue(point, _I, B);
@@ -111,11 +111,11 @@ private:
 	void interationOverDim<0>(const std::array<const SplittedInterval*, GEOM_DIMENSION_COUNT>& intervals) {
 		
 		interateOverDimMagSet<GEOM_DIMENSION_COUNT>(iBegAreaElems);
+		writeResults();
 		std::array<double, MAGN_DIMENSION_COUNT> buf = _vectMagnAnomaly;
 		_vectMagnAnomaly = _vectMagnEarth;
-		MagnetDirectTask<MagnetDim> magnetDirectTask(elems);
-
-
+		//MagnetTaskSimple<MagnetDim> magnetDirectTask(elems);
+		
 		///Дописать!
 		interateOverDimMagSet<GEOM_DIMENSION_COUNT>(iBegAreaElems);
 		_vectMagnAnomaly = buf;

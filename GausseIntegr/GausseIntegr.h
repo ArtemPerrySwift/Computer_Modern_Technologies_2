@@ -68,14 +68,14 @@ public:
 	//template<unsigned char ORDER> requires (ORDER <= MAX_ORDER)
 	//void setIntegrOrder();
 
-	double integrateOnUnitSpace(std::function<double(std::array<double, DIMENSION_COUNT>& point)> integrFunct)
+	double integrateOnUnitSpace(std::function<double(std::array<double, DIMENSION_COUNT>& point)> integrFunct) const
 	{
 		std::array<double, DIMENSION_COUNT> point;
 		return iterateOverDimension<DIMENSION_COUNT>(integrFunct, point);
 	}
 
 
-	double integrateOnSpace(std::function<double(std::array<double, DIMENSION_COUNT>& point)> integrFunct, std::array<std::pair<double, double>, DIMENSION_COUNT>& intervals)
+	double integrateOnSpace(std::function<double(std::array<double, DIMENSION_COUNT>& point)> integrFunct, std::array<std::pair<double, double>, DIMENSION_COUNT>& intervals) const
 	{
 		std::array<double, DIMENSION_COUNT> point;
 		double mes = 1;

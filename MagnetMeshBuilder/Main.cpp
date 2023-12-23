@@ -1,5 +1,6 @@
 #include "MagnetMeshInfoLibconfig.h"
 #include "MagnetMesh.h"
+
 int main()
 {
 	libconfig::Config cfg;
