@@ -1,6 +1,6 @@
 #include "MagnetMeshInfoLibconfig.h"
 #include "MagnetMesh.h"
-
+//#include <iostream>
 int main()
 {
 	libconfig::Config cfg;
@@ -19,6 +19,8 @@ int main()
 	MagnetMesh<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT> mesh(meshInfo);
 	std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>> geometryElements;
 	mesh.getElements(geometryElements);
-	int a = 0;
+	/*for (auto& element : geometryElements) {
+		std::cout << "x " << element._intervals[0]->leftPoint << " " << element._intervals[0]->rightPoint << " y " << element._intervals[1]->leftPoint << " " << element._intervals[1]->rightPoint << " px " << element.p[0] << " py "  << element.p[1] << std::endl;
+	}*/
 	return 0;
 }

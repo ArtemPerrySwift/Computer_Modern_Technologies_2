@@ -1,5 +1,6 @@
 #include "MeshInfoLibconfig.h"
 #include "Mesh.h"
+//#include <iostream>
 int main()
 {
 	libconfig::Config cfg;
@@ -18,7 +19,9 @@ int main()
 	Mesh<GEOM_DIMENSION_COUNT> mesh(meshInfo);
 	std::vector<GeometryElement<GEOM_DIMENSION_COUNT>> geometryElements;
 	mesh.getElements(geometryElements);
-
-	int a = 0;
+	/*for (auto& element : geometryElements) {
+		std::cout << "x " << element._intervals[0]->leftPoint << " " << element._intervals[0]->rightPoint << " y " << element._intervals[1]->leftPoint << " " << element._intervals[1]->rightPoint << std::endl;
+	}
+	int a = 0;*/
 	return 0;
 }

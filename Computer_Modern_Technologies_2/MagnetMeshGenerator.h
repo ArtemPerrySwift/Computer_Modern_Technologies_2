@@ -25,7 +25,7 @@ private:
 	using PointS = std::array<double, GEOM_DIMENSION_COUNT>;
 	std::vector<PointS>* _reciversPoints;
 
-	size_t it;
+	
 	double _magnAnomalyCoef;
 	size_t iBegAreaElems;
 	double _I;
@@ -36,26 +36,43 @@ private:
 	}
 
 	void writeResults() {
+		std::ofstream outf;
 		std::ofstream out;
-		out.open(fileName + "_MagnCoef_" + std::to_string(it) + ".bin", std::ios::binary | std::ios::out);
+		std::string path = ".\\TxtFiles\\";
+		std::string pathDataSet = ".\\DataSet\\";
+		out.open(pathDataSet + fileName + "_MagnCoef_" + std::to_string(it) + ".bin", std::ios::binary | std::ios::out);
+		outf.open(path + fileName + "_MagnCoef_" + std::to_string(it) + ".txt");
 		for (MagnetElementS& elem : elems)
 		{
-			double coeff = elem.p[0] == _vectMagnEarth[0] ? 1 : _magnAnomalyCoef;
+			//double coeff = elem.p[0] == _vectMagnEarth[0] ? 1 : _magnAnomalyCoef;
+			double coeff = elem.p[0] == 0 ? 0 : _magnAnomalyCoef;
 			out.write((char*)&coeff, sizeof(coeff));
-			std::cout << coeff << std::endl;
-		}
-		std::cout << std::endl;
-		out.close();
-		out.open(fileName + "_B_" + std::to_string(it) + ".bin", std::ios::binary | std::ios::out);
+			
+			for (int i = 0; i < elem._intervals.size(); i++)
+				outf << elem._intervals[i]->leftPoint << " " << elem._intervals[i]->rightPoint << " ";
 
+			outf << coeff << std::endl;
+			//std::cout << coeff << " ";
+		}
+		//std::cout << std::endl;
+		out.close();
+		outf.close();
+		out.open(pathDataSet + fileName + "_B_" + std::to_string(it) + ".bin", std::ios::binary | std::ios::out);
+		outf.open(path + fileName + "_B_" + std::to_string(it) + ".txt");
 		MagnetTaskSimple<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT> magnetDirectTask(elems);
 		std::array<double, MAGN_DIMENSION_COUNT> B;
 		for (std::array<double, GEOM_DIMENSION_COUNT>& point : *_reciversPoints) {
 			magnetDirectTask.getIndoctValue(point, _I, B);
-			for (int i = 0; i < MAGN_DIMENSION_COUNT; i++)
-				out.write((char*)&B[i], sizeof(double));
+			//for (int i = 0; i < MAGN_DIMENSION_COUNT; i++)
+			//{
+			out.write((char*)&B[0], sizeof(double));
+			outf << point[0] << " " << B[0] << std::endl;
+			//}
+				
 		}
+		outf.close();
 		out.close();
+		it++;
 	}
 
 	template<unsigned char GEOM_DIMENSION>
@@ -101,7 +118,9 @@ private:
 		interateOverDimMagSet<GEOM_DIMENSION_COUNT>(iBegAreaElems);
 		writeResults();
 		std::array<double, MAGN_DIMENSION_COUNT> buf = _vectMagnAnomaly;
-		_vectMagnAnomaly = _vectMagnEarth;
+		for (int i = 0; i < _vectMagnAnomaly.size(); i++)
+			_vectMagnAnomaly[i] = 0;
+		//_vectMagnAnomaly = _vectMagnEarth;
 		//MagnetTaskSimple<MagnetDim> magnetDirectTask(elems);
 
 		///Дописать!
@@ -132,18 +151,19 @@ private:
 
 public:
 	std::string fileName;
-
+	size_t it;
 	MagnetMeshGenerator(MagnetMeshS& magnetMesh,
 						std::vector<PointS>& reciversPoints,
 						MagnetVectorS& vectMagnEarth,
-						double I = 100, 
-						double magnAnomalyCoef = 10,
+						double I = 1000, 
+						double magnAnomalyCoef = 1,
 						std::string fileName = "MagnetMesh") : 
 							_vectMagnEarth{ vectMagnEarth }, 
 							fileName{ fileName }, 
 							_magnAnomalyCoef{ magnAnomalyCoef } {
 		setMesh(magnetMesh);
 		setI(I);
+		calcVectMagnAnomaly();
 		_reciversPoints = &reciversPoints;
 		it = 0;
 	}
@@ -163,7 +183,7 @@ public:
 			}
 			interationOverDim<GEOM_DIMENSION_COUNT>(intervals);
 		}
-		it = 0;
+		//it = 0;
 	}
 
 	void setMagnitAnomalyCoef(double magnitAnomalyCoef) {

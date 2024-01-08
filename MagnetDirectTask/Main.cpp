@@ -1,6 +1,7 @@
 #include "MagnetDirectTask.h"
 #include "MagnetMeshInfoLibconfig.h"
 #include <iostream>
+
 int main()
 {
 	libconfig::Config cfg;

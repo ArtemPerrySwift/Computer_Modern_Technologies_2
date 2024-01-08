@@ -1,6 +1,7 @@
 #include "MagnetMeshGenerator.h"
 #include "MagnetMeshInfoLibconfig.h"
 #include "Point.h"
+#include <fstream>
 const size_t GEOM_DIMENSION_COUNT = 2;
 const size_t MAGN_DIMENSION_COUNT = 2;
 
@@ -25,21 +26,35 @@ int main() {
 	MagnetMesh<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT> mesh(meshInfo);
 	std::vector<MagnetElement<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT>> geometryElements;
 	mesh.getElements(geometryElements);
-	int a = 0;
-	//MagnetTaskSimple<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT> directTask(geometryElements);
 
-	std::vector<PointS> points;
-	
+	std::ifstream in;
 	MagnetVectorS earthMagnVect;
-	for (double& elem : earthMagnVect) elem = 1;
+	in.open("EarthMagnIndoction");
+	for (int i = 0; i < earthMagnVect.size(); i++)
+		in >> earthMagnVect[i];
+	in.close();
 
-	generatePoints(-100, 100, 500, points);
+	
+	double leftPoint, rigthPoint;
+	size_t reciversCount;
+	in.open("ReciversMesh");
+	in >> leftPoint >> rigthPoint >> reciversCount;
+	std::vector<PointS> points;
+	generatePoints(leftPoint, rigthPoint, reciversCount - 1, points);
+	in.close();
+
+	size_t dataSetSize;
+	in.open("DataSetSize");
+	in >> dataSetSize;
+	in.close();
+
 	MagnetMeshGenerator<GEOM_DIMENSION_COUNT, MAGN_DIMENSION_COUNT> meshGen(mesh, points, earthMagnVect);
-	meshGen.generateMagnDataSet();
-	//std::vector<MagnetElement<2, 2>> elems;
-	//MagnetTaskSimple<2,2> directTask(elems);
-	////Reciver<2, 2> rec;
-	//directTask.getIndoctValue<1>(rec.point, 5);
+	double I;
+	setVarFromSetting(rootSetting, I, "I");
+	meshGen.setI(I);
+	while(meshGen.it < dataSetSize)
+		meshGen.generateMagnDataSet();
+
 	return 0;
 }
 
